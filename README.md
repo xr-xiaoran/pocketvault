@@ -61,7 +61,7 @@ go vet ./...
 go build ./...
 ```
 
-Tests use actual SQLite databases and HTTP listeners. The concurrency test launches 40 contenders through two independent database handles for 3 admissions and requires exactly 3 successes. No benchmark/QPS claim is made. See [TESTING.md](TESTING.md) and [完整学习与面试手册](docs/学习与面试手册.md).
+Tests use actual SQLite databases and HTTP listeners. The concurrency test launches 40 contenders through two independent database handles for 3 admissions and requires exactly 3 successes. No benchmark/QPS claim is made. See [TESTING.md](TESTING.md), [完整学习与面试手册](docs/学习与面试手册.md), and the [printable PDF handbook](docs/handbook.pdf).
 
 ## Source map
 
