@@ -46,7 +46,12 @@ func Router(s *vault.Store, keys map[string]string) http.Handler {
 		_, _ = w.Write(data)
 	})
 	mux.Handle("/api/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		token := strings.TrimPrefix(r.Header.Get("Authorization"), "Bearer ")
+		parts := strings.Fields(r.Header.Get("Authorization"))
+		if len(parts) != 2 || !strings.EqualFold(parts[0], "Bearer") {
+			write(w, 401, map[string]string{"error": "unauthorized"})
+			return
+		}
+		token := parts[1]
 		owner := ""
 		for label, key := range keys {
 			if len(key) >= 16 && subtle.ConstantTimeCompare([]byte(token), []byte(key)) == 1 {
